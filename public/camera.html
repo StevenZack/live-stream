@@ -9,12 +9,9 @@
 <body style="padding: 0px;margin: 0px;">
     <video id="sourcevid" controls></video>
     <br>
-    <img src="" id="receiver">
-    <br>
-    <canvas id="output"></canvas>
+    <canvas id="output" style="display: none;"></canvas>
     <script type="text/javascript">
     var v = document.getElementById("sourcevid")
-    var mimg = document.getElementById("receiver")
     var mcavas = document.getElementById("output")
     var mcavasContext = mcavas.getContext('2d')
     var data;
@@ -31,8 +28,7 @@
             console.log(e);
         }
         if (v.src) {
-            data = { Data: mcavas.toDataURL("image/jpeg", 0.92), Mtype: 'video' }
-            mimg.src = mcavas.toDataURL("image/jpeg", 0.92)
+            data = { Data: mcavas.toDataURL("image/jpeg", 0.5), Mtype: 'video' }
             socket.send(JSON.stringify(data))
         }
         setTimeout(draw, 33)

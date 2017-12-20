@@ -7,9 +7,10 @@
 <img src="" id="receiver">
 <script type="text/javascript">
 	var image=document.getElementById("receiver")
-	var socket=new WebSocket("ws://localhost:9090/chat")
-	socket.onmessage=function(data) {
-		var mData = JSON.parse(data.data)
+	var domain=location.href.split("/")[2]
+	var socket=new WebSocket("ws://"+domain+"/chat")
+	socket.onmessage=function(e) {
+		var mData = JSON.parse(e.data)
 		if (mData.Mtype=="video") {
 			image.src=mData.Data
 		}
